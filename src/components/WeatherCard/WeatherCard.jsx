@@ -15,16 +15,50 @@ const WeatherCard = ({ location }) => {
       setWeather(weatherData.current);
       setCondition(weatherData.current.condition);
       setLoc(weatherData.location);
-      setForecast(forecastData.forecast.forecastday[0].hour);
-      console.log(forecastData.forecast.forecastday[0].hour);
 
+      setForecast(
+        // getOnlyFutureForecast(forecastData.forecast.forecastday[0].hour)
+        get24HoursForecast(forecastData.forecast.forecastday)
+      );
       // console.log(forecastData.forecast.forecastday);
     };
     fetchData(location);
-
-    // fetchForecastData();
-    // console.log(forecast.forecastday[0].hour);
   }, []);
+
+  const get24HoursForecast = (forecast3Days) => {
+    const result = [];
+    const currentTime = new Date().getTime();
+
+    console.log(forecast3Days);
+    console.log('hello');
+
+    while (result.length < 24) {
+      for (let i = 0; i < forecast3Days.length; i++) {
+        for (let j = 0; j < forecast3Days[i].hour.length; j++) {
+          console.log(
+            forecast3Days[i].hour[j].time_epoch + ' vs ' + currentTime / 1000
+          );
+          if (forecast3Days[i].hour[j].time_epoch > currentTime / 1000) {
+            result.push(forecast3Days[i].hour[j]);
+          }
+        }
+      }
+    }
+    console.log(result);
+    return result;
+  };
+
+  const getOnlyFutureForecast = (allForecast) => {
+    const currentTime = new Date().getTime();
+    const result = allForecast.filter((item) => {
+      let newTime = new Date(item.time_epoch);
+      newTime = newTime.getTime();
+      // console.log(newTime + ' vs ' + currentTime / 1000);
+      return item.time_epoch > currentTime / 1000;
+    });
+    // console.log(result);
+    return result;
+  };
 
   return (
     <div className="weather-card">
@@ -56,13 +90,13 @@ const WeatherCard = ({ location }) => {
 };
 
 const ForecastCard = ({ weather }) => {
-  const time = new Date(weather.timey);
+  const time = new Date(weather.time);
 
   return (
     <div>
       <p>{weather.temp_c} &deg;C</p>
       <img src={weather?.condition?.icon}></img>
-      <p>{time.getHours()}</p>
+      <p>{time.toTimeString().split(' ')[0]}</p>
     </div>
   );
 };
