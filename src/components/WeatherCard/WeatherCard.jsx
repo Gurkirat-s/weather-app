@@ -1,69 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import './WeatherCard.css';
-import { getCurrentWeather, getForecast } from '../../services/weather';
 
-const WeatherCard = ({ location }) => {
-  const [weather, setWeather] = useState({});
-  const [forecast, setForecast] = useState([]);
-  const [loc, setLoc] = useState({});
-  const [condition, setCondition] = useState({});
+const WeatherCard = ({ weather, location, condition }) => {
+  // const [weather, setWeather] = useState({});
+  // const [forecast, setForecast] = useState([]);
+  // const [loc, setLoc] = useState({});
+  // const [condition, setCondition] = useState({});
 
-  useEffect(() => {
-    const fetchData = async (location) => {
-      const weatherData = await getCurrentWeather(location);
-      const forecastData = await getForecast(location);
-      setWeather(weatherData.current);
-      setCondition(weatherData.current.condition);
-      setLoc(weatherData.location);
+  // useEffect(() => {
+  //   const fetchData = async (location) => {
+  //     const forecastData = await getForecast(location);
 
-      setForecast(
-        // getOnlyFutureForecast(forecastData.forecast.forecastday[0].hour)
-        get24HoursForecast(forecastData.forecast.forecastday)
-      );
-      // console.log(forecastData.forecast.forecastday);
-    };
-    fetchData(location);
-  }, []);
+  //     console.log(forecastData);
 
-  const get24HoursForecast = (forecast3Days) => {
-    const result = [];
-    const currentTime = new Date().getTime();
+  //     setWeather(forecastData.current);
+  //     setCondition(forecastData.current.condition);
+  //     setLoc(forecastData.location);
 
-    console.log(forecast3Days);
-    console.log('hello');
+  //     setForecast(get24HoursForecast(forecastData.forecast.forecastday));
+  //   };
+  //   fetchData(location);
+  // }, []);
 
-    while (result.length < 24) {
-      for (let i = 0; i < forecast3Days.length; i++) {
-        for (let j = 0; j < forecast3Days[i].hour.length; j++) {
-          console.log(
-            forecast3Days[i].hour[j].time_epoch + ' vs ' + currentTime / 1000
-          );
-          if (forecast3Days[i].hour[j].time_epoch > currentTime / 1000) {
-            result.push(forecast3Days[i].hour[j]);
-          }
-        }
-      }
-    }
-    console.log(result);
-    return result;
-  };
+  // const get24HoursForecast = (forecast3Days) => {
+  //   const result = [];
+  //   const currentTime = new Date().getTime();
 
-  const getOnlyFutureForecast = (allForecast) => {
-    const currentTime = new Date().getTime();
-    const result = allForecast.filter((item) => {
-      let newTime = new Date(item.time_epoch);
-      newTime = newTime.getTime();
-      // console.log(newTime + ' vs ' + currentTime / 1000);
-      return item.time_epoch > currentTime / 1000;
-    });
-    // console.log(result);
-    return result;
-  };
+  //   for (let i = 0; i < forecast3Days.length; i++) {
+  //     for (let j = 0; j < forecast3Days[i].hour.length; j++) {
+  //       if (forecast3Days[i].hour[j].time_epoch > currentTime / 1000) {
+  //         result.push(forecast3Days[i].hour[j]);
+  //       }
+  //       if (result.length >= 24) return result;
+  //     }
+  //   }
+
+  //   console.log(result);
+  //   return result;
+  // };
+
+  // useEffect(() => {
+  //   console.log('Hello');
+  //   console.log(weather);
+  // }, []);
 
   return (
     <div className="weather-card">
       <h2 className="location">
-        {loc.name}, {loc.region}, {loc.country}
+        {location.name}, {location.region}, {location.country}
       </h2>
       <div className="weather-today">
         <div className="condition">
@@ -71,7 +55,10 @@ const WeatherCard = ({ location }) => {
           <p>{condition.text}</p>
         </div>
         <div className="weather">
-          <p className="current-weather">{weather.temp_c} &deg;C</p>
+          <p className="current-weather">
+            {weather.temp_c}
+            <span>&deg;C</span>
+          </p>
           <p className="feels-like">Feels like {weather.feelslike_c} &deg;C</p>
         </div>
         <div className="extra-info">
@@ -80,11 +67,6 @@ const WeatherCard = ({ location }) => {
           <p>Pressure: {weather.pressure_mb} kPa</p>
         </div>
       </div>
-      <ul className="weather-today-hourly">
-        {forecast.map((item) => (
-          <ForecastCard key={item.time_epoch} weather={item} />
-        ))}
-      </ul>
     </div>
   );
 };
