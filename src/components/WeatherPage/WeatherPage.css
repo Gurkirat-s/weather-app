@@ -1,3 +1,5 @@
+@import '../../index.css';
+
 .hourly-grid {
   width: 700px;
   margin: 3rem auto;
@@ -8,4 +10,11 @@
   overflow-y: hidden;
 
   box-shadow: 0px 10px 34px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loader {
+  margin: 5rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

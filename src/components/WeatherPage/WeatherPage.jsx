@@ -4,6 +4,7 @@ import './WeatherPage.css';
 
 import WeatherCard from '../WeatherCard/WeatherCard';
 import HourlyCard from '../HourlyCard/HourlyCard';
+import { ThreeDots } from 'react-loader-spinner';
 
 export const WeatherPage = ({ location }) => {
   const [weather, setWeather] = useState({
@@ -31,7 +32,7 @@ export const WeatherPage = ({ location }) => {
 
       const forecastData = await getForecast(location);
 
-      // console.log(forecastData);
+      console.log(forecastData.current);
 
       setWeather(forecastData.current);
       setCondition(forecastData.current.condition);
@@ -42,7 +43,6 @@ export const WeatherPage = ({ location }) => {
       setLoading(false);
     };
     fetchData(location);
-    // console.log(weather);
   }, [location]);
 
   const get24HoursForecast = (forecast3Days) => {
@@ -65,7 +65,18 @@ export const WeatherPage = ({ location }) => {
   return (
     <>
       {loading ? (
-        <h1>Loading</h1>
+        <div className="loader">
+          <ThreeDots
+            height="80"
+            width="80"
+            radius="9"
+            color="#0077b6"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClassName=""
+            visible={true}
+          />
+        </div>
       ) : (
         <div className="weather-page">
           <WeatherCard

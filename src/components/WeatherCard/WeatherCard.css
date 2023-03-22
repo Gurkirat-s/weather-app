@@ -1,3 +1,5 @@
+@import '../../index.css';
+
 .weather-card {
   max-width: 700px;
   display: flex;
@@ -11,7 +13,7 @@
   border-radius: 10px;
   padding: 1.5rem;
   /* color: #333; */
-  color: #626976;
+  color: var(--text-darkgray);
 }
 
 .location {
@@ -57,6 +59,6 @@
 
 .weather-today .extra-info {
   align-self: center;
-  color: #555;
+  color: var(--text-lightgray);
   font-size: 0.8rem;
 }

@@ -1,21 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { WeatherPage } from './components/WeatherPage/WeatherPage';
 
 function App() {
-  const [city, setCity] = useState('Calgary');
+  const [location, setLocation] = useState('Calgary');
   const [searchInput, setSearchInput] = useState('');
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        setLocation(pos.coords.latitude + ',' + pos.coords.longitude);
+      });
+    }
+  }, []);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     console.log(searchInput);
-    setCity(searchInput);
-    console.log(city);
+    setLocation(searchInput);
   };
 
   return (
     <div className="App">
-      <div className="header">
+      <div className="search">
         <form onSubmit={handleSearchSubmit} className="search-form">
           <input
             onChange={(e) => setSearchInput(e.target.value)}
@@ -26,7 +33,7 @@ function App() {
           <button htmlFor="search">Search</button>
         </form>
       </div>
-      <WeatherPage location={city} />
+      <WeatherPage location={location} />
     </div>
   );
 }

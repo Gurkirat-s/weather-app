@@ -7,9 +7,6 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// dotenv.config();
-console.log(process.env.REACT_APP_WEATHER_API_KEY);
-
 root.render(
   <React.StrictMode>
     <App />
