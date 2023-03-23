@@ -21,9 +21,34 @@
   display: flex;
   gap: 1.5rem;
   align-items: center;
+  transition: all 0.5s ease-in-out;
+}
+
+.sidebar-icons {
+  position: relative;
+}
+
+.sidebar-icons .menu-btn:first-child {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .menu-btn {
   font-size: 1.5rem;
   cursor: pointer;
+  /* visibility: visible; */
+  /* opacity: 1; */
+  transition: all 0.3s ease-in-out;
+}
+
+.icons.sidebar-visible {
+  margin-right: calc(250px);
+}
+
+.menu-btn.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  /* display: none; */
 }

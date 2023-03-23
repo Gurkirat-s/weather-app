@@ -1,0 +1,18 @@
+@import '../../index.css';
+
+.sidebar {
+  position: absolute;
+  width: 250px;
+  border: 2px solid black;
+  right: 0;
+  height: 100vh;
+  top: 0;
+  /* background-color: red; */
+  z-index: 99;
+  transition: all 0.5s ease-in-out;
+}
+
+.sidebar.hidden {
+  opacity: 0;
+  right: -250px;
+}
