@@ -1,15 +1,28 @@
 @import '../../index.css';
 
-.hourly-grid {
-  width: 700px;
+.hourly-container {
+  max-width: 800px;
   margin: 3rem auto;
-  padding: 1rem;
-  display: flex;
-  gap: 10px;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  /* padding: 1rem; */
+  padding-top: 1rem;
 
   box-shadow: 0px 10px 34px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.hourly-container h2 {
+  font-size: 1.2rem;
+  color: var(--text-lightgray);
+  position: absolute;
+  margin-left: 1rem;
+}
+
+.hourly-grid {
+  display: flex;
+  gap: 10px;
+  margin-top: 2.5rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .loader {
@@ -17,4 +30,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.daily-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
 }
