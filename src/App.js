@@ -3,11 +3,17 @@ import './App.css';
 import { WeatherPage } from './components/WeatherPage/WeatherPage';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
+import useFollowedCities, {
+  followedCities,
+  addCity,
+  removeCity,
+} from './hooks/useFollowedCities';
 
 function App() {
   const [location, setLocation] = useState('Calgary');
   const [searchInput, setSearchInput] = useState('');
   const [hideSidebar, setHideSidebar] = useState(true);
+  const { followedCities, addCity, removeCity } = useFollowedCities();
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -27,8 +33,17 @@ function App() {
     setHideSidebar((prev) => !prev);
   };
 
+  const handleAddCity = () => {
+    addCity(location);
+    console.log(followedCities);
+  };
+
+  const handleRemoveCity = (city) => {
+    removeCity(city);
+  };
+
   return (
-    <div className="App">
+    <div className="app">
       <Header toggleSidebar={toggleSidebar} />
       <Sidebar hideSidebar={hideSidebar} className="test" />
       <div className="search">
@@ -42,6 +57,7 @@ function App() {
           <button htmlFor="search">Search</button>
         </form>
       </div>
+      <button onClick={handleAddCity}>Add Current City</button>
       <WeatherPage location={location} />
     </div>
   );

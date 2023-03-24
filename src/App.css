@@ -1,5 +1,9 @@
 @import './index.css';
 
+.app {
+  height: 100%;
+}
+
 .search {
   display: flex;
   align-items: center;
