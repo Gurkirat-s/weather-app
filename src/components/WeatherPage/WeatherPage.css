@@ -1,5 +1,9 @@
 @import '../../index.css';
 
+.weather-page {
+  margin: 0 2rem;
+}
+
 .hourly-container {
   max-width: 800px;
   margin: 3rem auto;
@@ -20,9 +24,10 @@
 .hourly-grid {
   display: flex;
   gap: 10px;
-  margin-top: 2.5rem;
+  margin: 1rem 0;
   overflow-x: scroll;
   overflow-y: hidden;
+  padding: 2rem 0 1rem;
 }
 
 .loader {
@@ -34,8 +39,20 @@
 
 .daily-container {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto 3rem;
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 600px) {
+  .daily-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 450px) {
+  .weather-page {
+    margin: 0 1rem;
+  }
 }

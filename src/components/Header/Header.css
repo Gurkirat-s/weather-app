@@ -43,7 +43,7 @@
 }
 
 .icons.sidebar-visible {
-  margin-right: calc(250px);
+  margin-right: calc(350px);
 }
 
 .menu-btn.hidden {
@@ -51,4 +51,32 @@
   visibility: hidden;
   transition: all 0.3s ease-in-out;
   /* display: none; */
+}
+
+@media (max-width: 1300px) {
+  .icons.sidebar-visible {
+    margin-right: calc(300px);
+  }
+}
+
+@media (max-width: 1000px) {
+  .icons.sidebar-visible {
+    margin-right: calc(250px);
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 0 1rem 0 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .menu-btn {
+    z-index: 999;
+  }
+
+  .icons.sidebar-visible {
+    margin-right: 0;
+  }
 }

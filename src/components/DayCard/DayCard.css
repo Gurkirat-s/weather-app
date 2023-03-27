@@ -6,7 +6,7 @@
   box-shadow: 0px 10px 34px 4px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 0.5rem 1rem;
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
 }
 
 .day-card .weather {
@@ -49,4 +49,12 @@
 .day-card h3 {
   text-align: center;
   color: var(--text-darkgray);
+}
+
+@media (max-width: 600px) {
+  .day-card {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 1rem;
+  }
 }

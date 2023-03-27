@@ -4,9 +4,9 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import { TbArrowBigRight } from 'react-icons/tb';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
-const Header = ({ toggleSidebar }) => {
+const Header = ({ toggleSidebar, hideSidebar }) => {
   const [isDarkMode, setDarkMode] = useState(false);
-  const [hideSidebar, setHideSidebar] = useState(true);
+  // const [hideSidebar, setHideSidebar] = useState(true);
 
   const handleDarkModeChange = () => {
     console.log('theme changed');
@@ -15,7 +15,7 @@ const Header = ({ toggleSidebar }) => {
 
   const handleToggleSidebar = () => {
     toggleSidebar();
-    setHideSidebar((prev) => !prev);
+    // setHideSidebar((prev) => !prev);
   };
 
   return (

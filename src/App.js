@@ -26,6 +26,7 @@ function App() {
 
   const changeLocation = (location) => {
     setLocation(location);
+    setHideSidebar(true);
   };
 
   const handleSearchSubmit = (e) => {
@@ -50,7 +51,7 @@ function App() {
   return (
     <div className="app">
       <Toaster positon="top-center" />
-      <Header toggleSidebar={toggleSidebar} />
+      <Header hideSidebar={hideSidebar} toggleSidebar={toggleSidebar} />
       <Sidebar
         removeCity={handleRemoveCity}
         followedCities={followedCities}
