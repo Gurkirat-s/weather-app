@@ -34,17 +34,12 @@ export const WeatherPage = ({ location }) => {
 
       const forecastData = await getForecast(location);
 
-      // console.log(forecastData);
-
       setWeather(forecastData.current);
       setCondition(forecastData.current.condition);
       setLocationInfo(forecastData.location);
 
       setForecast(get24HoursForecast(forecastData.forecast.forecastday));
       setForecast3Days(forecastData.forecast.forecastday);
-
-      console.log(forecastData.forecast.forecastday.length);
-      console.log(forecastData.forecast.forecastday);
 
       setLoading(false);
     };
@@ -64,7 +59,6 @@ export const WeatherPage = ({ location }) => {
       }
     }
 
-    // console.log(result);
     return result;
   };
 

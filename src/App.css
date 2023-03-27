@@ -6,6 +6,7 @@
 
 .search {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 3rem;
@@ -49,4 +50,8 @@
 .search button:hover {
   background-color: var(--primary-bluedark);
   cursor: pointer;
+}
+
+.search .follow-city-btn {
+  margin: 1rem;
 }

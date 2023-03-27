@@ -19,13 +19,13 @@ const Header = ({ toggleSidebar }) => {
   };
 
   return (
-    <header class="header">
+    <header className="header">
       <div className="logo">
         <img src="./logo.png" alt="Max Weather Logo" />
       </div>
       <div className={hideSidebar ? 'icons' : 'icons sidebar-visible'}>
         <DarkModeSwitch
-          class="darkmode-btn"
+          className="darkmode-btn"
           checked={isDarkMode}
           moonColor="#0077b6"
           onChange={handleDarkModeChange}
@@ -33,12 +33,12 @@ const Header = ({ toggleSidebar }) => {
         <div className="sidebar-icons">
           <TbArrowBigRight
             onClick={handleToggleSidebar}
-            class={hideSidebar ? 'menu-btn close hidden' : 'menu-btn close'}
+            className={hideSidebar ? 'menu-btn close hidden' : 'menu-btn close'}
           />
 
           <AiOutlineMenu
             onClick={handleToggleSidebar}
-            class={hideSidebar ? 'menu-btn open' : 'menu-btn open hidden'}
+            className={hideSidebar ? 'menu-btn open' : 'menu-btn open hidden'}
           />
         </div>
       </div>

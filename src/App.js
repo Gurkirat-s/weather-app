@@ -8,6 +8,7 @@ import useFollowedCities, {
   addCity,
   removeCity,
 } from './hooks/useFollowedCities';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [location, setLocation] = useState('Calgary');
@@ -22,6 +23,10 @@ function App() {
       });
     }
   }, []);
+
+  const changeLocation = (location) => {
+    setLocation(location);
+  };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -44,8 +49,15 @@ function App() {
 
   return (
     <div className="app">
+      <Toaster positon="top-center" />
       <Header toggleSidebar={toggleSidebar} />
-      <Sidebar hideSidebar={hideSidebar} className="test" />
+      <Sidebar
+        removeCity={handleRemoveCity}
+        followedCities={followedCities}
+        hideSidebar={hideSidebar}
+        changeLocation={changeLocation}
+        className="test"
+      />
       <div className="search">
         <form onSubmit={handleSearchSubmit} className="search-form">
           <input
@@ -54,10 +66,14 @@ function App() {
             name="search"
             placeholder="City"
           />
-          <button htmlFor="search">Search</button>
+          <div className="buttons">
+            <button htmlFor="search">Search</button>
+            <button className="follow-city-btn" onClick={handleAddCity}>
+              Follow City
+            </button>
+          </div>
         </form>
       </div>
-      <button onClick={handleAddCity}>Add Current City</button>
       <WeatherPage location={location} />
     </div>
   );

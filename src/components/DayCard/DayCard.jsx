@@ -18,7 +18,7 @@ const DayCard = ({ date, temp, min, max, icon, condition }) => {
           <h4>
             {temp} <span>&deg;C</span>
           </h4>
-          <div class="min-max">
+          <div className="min-max">
             <p>Min: {min} &deg;C</p>
             <p>Max: {max} &deg;C</p>
           </div>
