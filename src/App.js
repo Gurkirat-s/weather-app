@@ -3,11 +3,7 @@ import './App.css';
 import { WeatherPage } from './components/WeatherPage/WeatherPage';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
-import useFollowedCities, {
-  followedCities,
-  addCity,
-  removeCity,
-} from './hooks/useFollowedCities';
+import useFollowedCities from './hooks/useFollowedCities';
 import { Toaster } from 'react-hot-toast';
 import { ThemeContext } from './context/ThemeContext';
 
@@ -21,6 +17,7 @@ function App() {
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
+        console.log('app useEffect');
         setLocation(pos.coords.latitude + ',' + pos.coords.longitude);
       });
     }
@@ -33,8 +30,10 @@ function App() {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    console.log(searchInput);
-    setLocation(searchInput);
+    // console.log(searchInput);
+    if (searchInput !== '') {
+      setLocation(searchInput);
+    }
   };
 
   const toggleSidebar = () => {
@@ -43,7 +42,8 @@ function App() {
 
   const handleAddCity = () => {
     addCity(location);
-    console.log(followedCities);
+    console.log(location);
+    // console.log(followedCities);
   };
 
   const handleRemoveCity = (city) => {

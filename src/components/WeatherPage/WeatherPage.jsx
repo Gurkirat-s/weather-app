@@ -33,7 +33,8 @@ export const WeatherPage = ({ location }) => {
   useEffect(() => {
     const fetchData = async (location) => {
       setLoading(true);
-
+      console.log(location);
+      console.log('hello');
       const forecastData = await getForecast(location);
 
       setWeather(forecastData.current);
@@ -45,7 +46,10 @@ export const WeatherPage = ({ location }) => {
 
       setLoading(false);
     };
-    fetchData(location);
+    if (location !== '' || location != null) {
+      console.log(location);
+      fetchData(location);
+    }
   }, [location]);
 
   const get24HoursForecast = (forecast3Days) => {
@@ -110,7 +114,6 @@ export const WeatherPage = ({ location }) => {
               return (
                 <DayCard
                   key={index}
-                  date={item.date_epoch}
                   temp={item.day.avgtemp_c}
                   min={item.day.mintemp_c}
                   max={item.day.maxtemp_c}
