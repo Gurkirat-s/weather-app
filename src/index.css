@@ -5,6 +5,10 @@
   --text-lightgray: #626976;
   --primary-blue: #0077b6;
   --primary-bluedark: #006ba4;
+  --dark1: #374151;
+  --dark2: #23272f;
+  --white1: #e0e1dd;
+  --white2: #b3b4b1;
 }
 
 html {

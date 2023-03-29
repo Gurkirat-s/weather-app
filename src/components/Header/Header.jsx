@@ -1,33 +1,31 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Header.css';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { TbArrowBigRight } from 'react-icons/tb';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { ThemeContext } from '../../context/ThemeContext';
 
-const Header = ({ toggleSidebar, hideSidebar }) => {
-  const [isDarkMode, setDarkMode] = useState(false);
-  // const [hideSidebar, setHideSidebar] = useState(true);
+const Header = ({ toggleSidebar, hideSidebar, changeTheme }) => {
+  const theme = useContext(ThemeContext);
 
   const handleDarkModeChange = () => {
-    console.log('theme changed');
-    setDarkMode((prev) => !prev);
+    changeTheme();
   };
 
   const handleToggleSidebar = () => {
     toggleSidebar();
-    // setHideSidebar((prev) => !prev);
   };
 
   return (
-    <header className="header">
+    <header className={theme === 'dark' ? 'header dark-theme' : 'header'}>
       <div className="logo">
         <img src="./logo.png" alt="Max Weather Logo" />
       </div>
       <div className={hideSidebar ? 'icons' : 'icons sidebar-visible'}>
         <DarkModeSwitch
           className="darkmode-btn"
-          checked={isDarkMode}
-          moonColor="#0077b6"
+          checked={theme === 'dark'}
+          moonColor="#edf2f4"
           onChange={handleDarkModeChange}
         />
         <div className="sidebar-icons">

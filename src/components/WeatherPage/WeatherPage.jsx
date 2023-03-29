@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { getForecast } from '../../services/weather';
 import './WeatherPage.css';
 
@@ -6,6 +6,7 @@ import WeatherCard from '../WeatherCard/WeatherCard';
 import HourlyCard from '../HourlyCard/HourlyCard';
 import DayCard from '../DayCard/DayCard';
 import { ThreeDots } from 'react-loader-spinner';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export const WeatherPage = ({ location }) => {
   const [weather, setWeather] = useState({
@@ -27,6 +28,7 @@ export const WeatherPage = ({ location }) => {
     text: '',
   });
   const [loading, setLoading] = useState(false);
+  const theme = useContext(ThemeContext);
 
   useEffect(() => {
     const fetchData = async (location) => {
@@ -78,7 +80,11 @@ export const WeatherPage = ({ location }) => {
           />
         </div>
       ) : (
-        <div className="weather-page">
+        <div
+          className={
+            theme === 'dark' ? 'weather-page dark-theme' : 'weather-page'
+          }
+        >
           <WeatherCard
             weather={weather}
             condition={condition}

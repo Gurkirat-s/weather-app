@@ -51,6 +51,26 @@
   color: var(--text-darkgray);
 }
 
+.dark-theme .day-card {
+  background-color: var(--dark1);
+}
+
+.dark-theme .weather .condition {
+  color: var(--white2);
+}
+
+.dark-theme h3 {
+  color: var(--white1);
+}
+
+.dark-theme h4 {
+  color: var(--white1);
+}
+
+.dark-theme .min-max {
+  color: var(--white2);
+}
+
 @media (max-width: 600px) {
   .day-card {
     padding-left: 3rem;

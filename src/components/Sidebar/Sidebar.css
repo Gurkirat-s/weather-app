@@ -56,7 +56,8 @@
   border-radius: 5px;
 }
 
-.sidebar-card .location-name {
+.dark-theme .sidebar {
+  background-color: var(--dark2);
 }
 
 .sidebar-card .card-info {
@@ -75,6 +76,19 @@
 .sidebar-card .right span {
   font-size: 1.2rem;
   color: var(--text-lightgray);
+}
+
+.dark-theme .sidebar-card {
+  background-color: var(--dark1);
+}
+
+.dark-theme .sidebar-card .right {
+  color: var(--white1);
+}
+
+.dark-theme .sidebar-card span,
+.dark-theme .sidebar-card .left {
+  color: var(--white2);
 }
 
 @media (max-width: 1300px) {

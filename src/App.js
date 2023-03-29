@@ -9,12 +9,14 @@ import useFollowedCities, {
   removeCity,
 } from './hooks/useFollowedCities';
 import { Toaster } from 'react-hot-toast';
+import { ThemeContext } from './context/ThemeContext';
 
 function App() {
   const [location, setLocation] = useState('Calgary');
   const [searchInput, setSearchInput] = useState('');
   const [hideSidebar, setHideSidebar] = useState(true);
   const { followedCities, addCity, removeCity } = useFollowedCities();
+  const [theme, setTheme] = useState('light');
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -48,35 +50,51 @@ function App() {
     removeCity(city);
   };
 
+  const changeTheme = () => {
+    setTheme((prev) => {
+      if (prev === 'light') {
+        return 'dark';
+      } else {
+        return 'light';
+      }
+    });
+  };
+
   return (
-    <div className="app">
-      <Toaster positon="top-center" />
-      <Header hideSidebar={hideSidebar} toggleSidebar={toggleSidebar} />
-      <Sidebar
-        removeCity={handleRemoveCity}
-        followedCities={followedCities}
-        hideSidebar={hideSidebar}
-        changeLocation={changeLocation}
-        className="test"
-      />
-      <div className="search">
-        <form onSubmit={handleSearchSubmit} className="search-form">
-          <input
-            onChange={(e) => setSearchInput(e.target.value)}
-            type="text"
-            name="search"
-            placeholder="City"
-          />
-          <div className="buttons">
-            <button htmlFor="search">Search</button>
-            <button className="follow-city-btn" onClick={handleAddCity}>
-              Follow City
-            </button>
-          </div>
-        </form>
+    <ThemeContext.Provider value={theme}>
+      <div className={theme === 'dark' ? 'app dark-theme' : 'app'}>
+        <Toaster positon="top-center" />
+        <Header
+          changeTheme={changeTheme}
+          hideSidebar={hideSidebar}
+          toggleSidebar={toggleSidebar}
+        />
+        <Sidebar
+          removeCity={handleRemoveCity}
+          followedCities={followedCities}
+          hideSidebar={hideSidebar}
+          changeLocation={changeLocation}
+          className="test"
+        />
+        <div className="search">
+          <form onSubmit={handleSearchSubmit} className="search-form">
+            <input
+              onChange={(e) => setSearchInput(e.target.value)}
+              type="text"
+              name="search"
+              placeholder="City"
+            />
+            <div className="buttons">
+              <button htmlFor="search">Search</button>
+              <button className="follow-city-btn" onClick={handleAddCity}>
+                Follow City
+              </button>
+            </div>
+          </form>
+        </div>
+        <WeatherPage location={location} />
       </div>
-      <WeatherPage location={location} />
-    </div>
+    </ThemeContext.Provider>
   );
 }
 

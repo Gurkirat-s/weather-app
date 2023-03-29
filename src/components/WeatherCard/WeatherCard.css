@@ -67,6 +67,22 @@
   margin-left: auto;
 }
 
+.dark-theme .weather-card {
+  background-color: var(--dark1);
+}
+
+.dark-theme .weather-card .location,
+.dark-theme .weather-card .current-weather {
+  color: var(--white1);
+}
+
+.dark-theme .weather-card .condition,
+.dark-theme .weather-card .feels-like,
+.dark-theme .weather-card .extra-info,
+.dark-theme .weather-card .current-weather span {
+  color: var(--white2);
+}
+
 @media (max-width: 700px) {
   .weather-today {
     margin: 0 1rem;

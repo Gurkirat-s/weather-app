@@ -20,6 +20,11 @@
   width: 75px;
 }
 
+.dark-theme .hourly-card {
+  color: var(--white2);
+  background-color: var(--dark2);
+}
+
 .hourly-card:hover {
   transform: scale(1.05);
   box-shadow: 0px 10px 32px 13px rgba(0, 0, 0, 0.1);

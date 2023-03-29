@@ -53,6 +53,14 @@
   /* display: none; */
 }
 
+.dark-theme.header {
+  background-color: var(--dark1);
+}
+
+.dark-theme .icons {
+  color: #edf2f4;
+}
+
 @media (max-width: 1300px) {
   .icons.sidebar-visible {
     margin-right: calc(300px);
